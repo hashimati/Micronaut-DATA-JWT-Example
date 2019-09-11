@@ -1,0 +1,35 @@
+micronaut:
+  security:
+    enabled: true
+    endpoints:
+      login:
+        enabled: true
+      oauth:
+        enabled: true
+    token:
+      jwt:
+        enabled: true
+        signatures:
+          secret:
+            generator:
+              secret: pleaseChangeThisSecretForANewOne
+
+---
+jackson:
+  bean-introspection-module: true
+
+---
+#
+datasources:
+  default:
+    url: jdbc:mysql://127.0.0.1:3306/helloworlddb
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'Hello@1234'
+    schema-generate: CREATE_DROP #uncomment if you want drop the database everytime you restart the service
+    dialect: MYSQL
+---
+flyway:
+  datasources:
+    default:
+      locations: classpath:databasemigrations
