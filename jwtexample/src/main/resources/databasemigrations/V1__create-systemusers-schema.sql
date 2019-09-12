@@ -3,16 +3,16 @@ create table systemuser (
   username varchar(25) not null,
   password varchar(15) not null,
   primary key (username),
-  constraint username unique (username),
-  constraint id_num unique (id)
+  UNIQUE KEY username(username),
+  UNIQUE KEY id_num(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table roles (
     id BIGINT NOT NULL AUTO_INCREMENT,
     role_name varchar(50) not null ,
     primary key (role_name),
-    constraint role_name_constraint unique (role_name),
-    constraint id_num unique (id)
+    UNIQUE KEY role_name_unique(role_name),
+    UNIQUE KEY id_num(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into roles(role_name) values ('PARENT');
