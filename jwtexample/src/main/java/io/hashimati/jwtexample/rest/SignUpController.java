@@ -23,11 +23,14 @@ public class SignUpController
 
 
 
-    @Post(value = "/parent/signup", consumes = MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Post(value = "/parent/signup")
+    @Produces(MediaType.TEXT_PLAIN)
     public String signUpParent(@Body User user)
     {
+        System.out.println("I'received Object ");
+
        // user.setRole("PARENT");
+        user.setRoles("PARENT");
         return userService.saveUser(user).toString();
     }
 
@@ -37,6 +40,7 @@ public class SignUpController
     public String signUpSon(@Body User user)
     {
         //user.setRole("SON");
+        user.setRoles("SON");
         return userService.saveUser(user).toString();
     }
 }

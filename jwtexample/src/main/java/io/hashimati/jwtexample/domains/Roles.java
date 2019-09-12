@@ -1,26 +1,30 @@
 package io.hashimati.jwtexample.domains;
 
 import io.micronaut.data.annotation.GeneratedValue;
-import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 import io.micronaut.data.annotation.MappedProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@MappedEntity("roles")
+
+@Entity
+@Table(name ="roles")
 public class Roles {
-
-    @GeneratedValue
     @Id
-    private long id;
+    @GeneratedValue
+    private Long id;
+
 
     @MappedProperty("role_name")
     private String roleName;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

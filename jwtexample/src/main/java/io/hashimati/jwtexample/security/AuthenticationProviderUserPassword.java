@@ -24,11 +24,10 @@ public class AuthenticationProviderUserPassword implements AuthenticationProvide
                 authenticationRequest.getIdentity().toString(),
                 authenticationRequest.getSecret().toString());
         if ( user !=null ) {
-            return Flowable.just(new UserDetails(user.getUsername(), user.getRoles()
-                    .stream()
-                    .map(x->x.getRole())
-                    .collect(Collectors.toList())
-            ));
+            return Flowable.just(new UserDetails(user.getUsername(),
+                    Arrays.asList(user.getRoles()
+                            .replace(" ", "")
+                            .split(","))));
         }
         return Flowable.just(new AuthenticationFailed());
     }

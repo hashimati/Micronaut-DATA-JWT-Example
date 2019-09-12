@@ -1,24 +1,21 @@
 package io.hashimati.jwtexample.domains;
 
 import io.micronaut.data.annotation.GeneratedValue;
-import io.micronaut.data.annotation.Id;
-import io.micronaut.data.annotation.MappedEntity;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Objects;
 
 
-@MappedEntity(value = "systemuser")
+@Entity
+@Table(name="systemuser")
 public class User
 {
 
-    @GeneratedValue
-    private long id;
-
     @Id
+    @GeneratedValue
+    private Long id;
+
+
     @NotNull
     @Column(name = "username", unique = true, nullable = false, length = 26, updatable = false)
     private String username;
@@ -29,8 +26,9 @@ public class User
     private String password;
 
 
-    @OneToMany
-    private ArrayList<UsersRoles> roles = new ArrayList<UsersRoles>() ;
+
+
+    private String roles ;
 
     public User(){}
     public User(@NotNull String username, @NotNull String password) {
@@ -59,11 +57,11 @@ public class User
     }
 
 
-    public ArrayList<UsersRoles> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(ArrayList<UsersRoles> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 
@@ -76,5 +74,13 @@ public class User
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public Long getId()
+    {
+        return this.id;
     }
 }
